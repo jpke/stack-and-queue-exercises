@@ -77,8 +77,8 @@ function squareDancePair(dancerArray) {
   return {pairs: pairs, 
           "unpaired dancers": 
             (queueM.dataStore[0]) && (queueF.dataStore[0]) ? "males and females" : 
-              (queueM.dataStore[0]) ? "males" : 
-                (queueF.dataStore[0]) ? "females" : "none"};
+              (queueM.dataStore[0]) ? "at least one male" : 
+                (queueF.dataStore[0]) ? "at least one female" : "none"};
 }
 console.log(squareDancePair(["m1", "m2","m3","f1","f2","f3", "m4", "m5"]))
 console.log(squareDancePair(["m1", "m2","f1","f2","f3"]))

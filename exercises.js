@@ -39,14 +39,14 @@ function missingBrackets(exp) {
       else if(exp[i] === "'" || exp[i] === '"') stack.push([i, exp[i]])
       else if(stack.peek()[1] === "'" || stack.peek()[1] === '"'){}
         //skip further analysis since bracket would be within quotations
-      else if(exp[i].match(/[\(\[\{]/g)) stack.push([i, exp[i]])
-      else if(exp[i].match(/[\)\]\}]/g)) {
+      else if(exp[i].match(/[([{]/)) stack.push([i, exp[i]])
+      else if(exp[i].match(/[)\]}]/)) {
         let check = checkClosure(stack.pop(), i);
         if(check) return check;
       }
     }
-    else if(exp[i].match(/[\(\[\{\'\"]/g)) stack.push([i, exp[i]])
-    else if(exp[i].match(/[\)\]\}]/g)) {
+    else if(exp[i].match(/[([{'"]/)) stack.push([i, exp[i]])
+    else if(exp[i].match(/[)\]}]/)) {
       let check = checkClosure(stack.pop(), i);
       if(check) return check;
     }
@@ -96,7 +96,7 @@ function bankLobbyQueue(customerCount) {
     console.log(customerQueue.dataStore);
     console.log(customerQueue.dataStore.length);
     //appropriate paperwork?
-    if(Math.random() <= 0.74) {
+    if(Math.random() < 0.75) {
       customerQueue.dequeue();
     } else customerQueue.enqueue(customerQueue.dequeue());
   }
